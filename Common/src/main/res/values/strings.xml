@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Common</string>
+    <string name="title_error">Lỗi</string>
+    <string name="ok">Đồng ý</string>
+    <string name="loading">Đang tải</string>
+    <string name="cancel">Hủy</string>
+    <string name="title_network_lost">Lỗi kết nối</string>
+    <string name="msg_network_lost">Không có kết nối mạng. Vui lòng thử lại!</string>
+</resources>

@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.gemvietnam.hocvalam"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "0.9.1"
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'HVLSocialNetwork'
+            keyPassword 'HVLSocialNetwork'
+            storeFile file('HVLSocialNetwork.jks')
+            storePassword 'HVLSocialNetwork'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+    }
+
+    productFlavors {
+        dev {
+            versionCode 1
+            versionName "0.9.1"
+            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
+        }
+
+        qa {
+            versionCode 1
+            versionName "0.9.1"
+            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
+        }
+
+        staging {
+            versionCode 1
+            versionName "0.9.1"
+            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
+        }
+
+        production {
+            versionCode 1
+            versionName "0.9.1"
+            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
+        }
+    }
+}
+
+// Build type configurations
+configurations {
+    devDebugCompile
+    devReleaseCompile
+    qaDebugCompile
+    qaReleaseCompile
+    stagingDebugCompile
+    stagingReleaseCompile
+    productionDebugCompile
+    productionReleaseCompile
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':Common')
+    // Setup build type for Common module
+    devDebugCompile project(path: ':Common', configuration: 'devDebug')
+    devReleaseCompile project(path: ':Common', configuration: 'devRelease')
+    qaDebugCompile project(path: ':Common', configuration: 'qaDebug')
+    qaReleaseCompile project(path: ':Common', configuration: 'qaRelease')
+    stagingDebugCompile project(path: ':Common', configuration: 'stagingDebug')
+    stagingReleaseCompile project(path: ':Common', configuration: 'stagingRelease')
+    productionDebugCompile project(path: ':Common', configuration: 'productionDebug')
+    productionReleaseCompile project(path: ':Common', configuration: 'productionRelease')
+
+    // Dependencies for local unit tests
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockito"
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockito"
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+}
