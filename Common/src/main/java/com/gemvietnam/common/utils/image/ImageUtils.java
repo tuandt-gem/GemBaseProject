@@ -1,5 +1,6 @@
 package com.gemvietnam.common.utils.image;
 
+import com.gemvietnam.common.R;
 import com.gemvietnam.common.base.log.Logger;
 import com.gemvietnam.common.utils.ContextUtils;
 
@@ -35,6 +36,22 @@ public class ImageUtils {
     private static String CACHE_FOLDER = ".cache/";
 
     private static final Object SCROLL_TAG = new Object();
+
+    private static final int DEFAULT_PLACE_HOLDER = R.color.grey;
+
+    /**
+     * Load image with default place holder
+     */
+    public static void loadImage(Context context, String imageUrl, ImageView imageView) {
+        loadImage(context, imageUrl, imageView, DEFAULT_PLACE_HOLDER, DEFAULT_PLACE_HOLDER);
+    }
+
+    /**
+     * Using Glide to load image
+     */
+    public static void loadImage(Context context, String imageUrl, ImageView imageView, int placeHolderId, int errorId) {
+       loadImage(context, imageUrl, imageView, placeHolderId, errorId, false);
+    }
 
     /**
      * Using Glide to load image

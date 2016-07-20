@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/post_images_container_ll"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.gemvietnam.common.view.SquareImage
+        android:id="@+id/post_image_1"
+        style="@style/ImagePost"
+        android:layout_marginLeft="0dp"/>
+
+    <com.gemvietnam.common.view.SquareImage
+        android:id="@+id/post_image_2"
+        style="@style/ImagePost"/>
+
+    <com.gemvietnam.common.view.SquareImage
+        android:id="@+id/post_image_3"
+        style="@style/ImagePost"/>
+
+    <com.gemvietnam.common.view.CTextView
+        android:id="@+id/post_more_image_tv"
+        style="@style/Text.MoreImage"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/padding_view_common"
+        android:text="+14"/>
+</LinearLayout>

@@ -73,7 +73,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         if (getActivity() instanceof BaseActivity) {
             return (BaseActivity) getActivity();
         } else {
-            throw new IllegalArgumentException("This Fragment isn't associated with BaseActivity");
+            return null;
         }
     }
 
@@ -93,7 +93,23 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
 
     @Override
     public void showAlertDialog(String message) {
-        getBaseActivity().showAlertDialog(message);
+        if (ContextUtils.isValidContext(getBaseActivity())) {
+            getBaseActivity().showAlertDialog(message);
+        }
+    }
+
+    @Override
+    public void showProgress() {
+        if (getBaseActivity() != null) {
+            getBaseActivity().showProgress();
+        }
+    }
+
+    @Override
+    public void hideProgress() {
+        if (getBaseActivity() != null) {
+            getBaseActivity().hideProgress();
+        }
     }
 
     // Arbitrary value; set it to some reasonable default

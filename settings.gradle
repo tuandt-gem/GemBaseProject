@@ -1,1 +1,1 @@
-include ':SocialNetwork', ':Common'
+include ':SocialNetwork', ':Common', ':SuperRecyclerView'

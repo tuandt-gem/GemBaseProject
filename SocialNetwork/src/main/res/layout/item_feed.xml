@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/padding_view_common">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_view_common">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.gemvietnam.common.view.SquareImage
+                android:id="@+id/item_feed_avatar_iv"
+                android:layout_width="@dimen/feed_avatar_size"
+                android:layout_height="@dimen/feed_avatar_size"
+                android:src="@drawable/ic_friends"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/padding_view_common"
+                android:layout_marginRight="@dimen/padding_view_common"
+                android:layout_height="wrap_content">
+
+                <com.gemvietnam.common.view.CTextView
+                    android:id="@+id/item_feed_name_tv"
+                    style="@style/Text.Name.Single"
+                    android:text="Huong Duong"/>
+
+                <com.gemvietnam.common.view.CTextView
+                    android:id="@+id/item_feed_date_tv"
+                    style="@style/Text.Date"
+                    android:layout_marginTop="@dimen/padding_small"
+                    android:text="01/01/2016 10:12"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/item_feed_friend_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_friends_post"
+                android:background="@drawable/bg_selector_common"
+                android:layout_gravity="top"/>
+
+            <ImageView
+                android:id="@+id/item_feed_actions_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_view_common"
+                android:src="@drawable/ic_actions_post"
+                android:background="@drawable/bg_selector_common"
+                android:layout_gravity="top"/>
+        </LinearLayout>
+
+        <com.gemvietnam.common.view.ExpandableTextView
+            android:id="@+id/item_feed_content_tv"
+            style="@style/Text.Content"
+            android:layout_marginTop="@dimen/padding_view_common"
+            android:text="Content here"
+            android:layout_marginBottom="@dimen/padding_view_common"
+            app:trimLength="50"/>
+
+        <include
+            layout="@layout/layout_post_images"/>
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/layout_post_activities"/>
+</LinearLayout>

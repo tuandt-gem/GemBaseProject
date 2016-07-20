@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ab_home_ll"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/ab_home_notification_iv"
+        style="@style/ActionBar.Icon"
+        android:src="@drawable/ic_notifications"/>
+
+    <ImageView
+        android:id="@+id/ab_home_friend_iv"
+        style="@style/ActionBar.Icon"
+        android:src="@drawable/ic_friends"/>
+
+    <ImageView
+        android:id="@+id/ab_home_logo_iv"
+        style="@style/ActionBar.ImageTitle"
+        android:scaleType="center"
+        android:src="@drawable/logo_action_bar"/>
+
+    <ImageView
+        android:id="@+id/ab_home_search_iv"
+        style="@style/ActionBar.Icon"
+        android:src="@drawable/ic_search"/>
+
+
+</LinearLayout>

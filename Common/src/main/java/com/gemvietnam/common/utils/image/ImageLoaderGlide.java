@@ -25,10 +25,9 @@ public class ImageLoaderGlide implements ImageLoader {
             Glide
                     .with(context)
                     .load(imageUrl)
-                    .fitCenter()
                     .placeholder(placeHolderId)
                     .error(errorId)
-                    .crossFade()
+                    .centerCrop()
                     .into(imageView);
         } else {
             Glide

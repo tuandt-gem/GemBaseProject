@@ -9,8 +9,14 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
+
+    <!-- Common msg -->
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="msg_server_error">Kết nối máy chủ thất bại. Vui lòng thử lại sau.</string>
 
+    <!-- Feed -->
+    <string name="more_image_format">+%s</string>
+    <string name="no_data">Không có dữ liệu</string>
+    <string name="activity_summary_format">%d hoạt động</string>
 </resources>

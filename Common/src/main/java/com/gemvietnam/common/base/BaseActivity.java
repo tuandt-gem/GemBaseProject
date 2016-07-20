@@ -1,6 +1,7 @@
 package com.gemvietnam.common.base;
 
 import com.gemvietnam.common.R;
+import com.gemvietnam.common.utils.ActivityUtils;
 import com.gemvietnam.common.utils.DialogUtils;
 
 import android.app.Activity;
@@ -23,12 +24,12 @@ import butterknife.ButterKnife;
  * Created by neo on 2/5/2016.
  */
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView<T> {
-    //    private ProgressDialog mProgressDialog;
     private T mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
         setContentView(getLayoutId());
         // Inject views
         ButterKnife.bind(this);
@@ -57,17 +58,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     @Override
     public void showProgress() {
-//        if (mProgressDialog != null && !mProgressDialog.isShowing()) {
-//            mProgressDialog.show();
-//        }
         DialogUtils.showProgressDialog(this);
     }
 
     @Override
     public void hideProgress() {
-//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-//            mProgressDialog.dismiss();
-//        }
         DialogUtils.dismissProgressDialog();
     }
 
@@ -87,11 +82,19 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         return this;
     }
 
+    @Override
+    public BaseActivity getBaseActivity() {
+        return this;
+    }
+
     /**
      * Return layout resource id for activity
      */
     protected abstract int getLayoutId();
 
+    /**
+     * Hide keyboard of current focus view
+     */
     public void hideKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -101,6 +104,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
     }
 
+    /**
+     * Show keyboard for {@link EditText}
+     */
     public void showKeyboard(EditText editText) {
         editText.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -108,31 +114,16 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
-    public void addFragment(int containerId, BaseFragment fragment, Bundle args, boolean addToBackStack, String tag) {
-        if (args != null) {
-            fragment.setArguments(args);
-        }
-
-        addFragment(containerId, fragment, addToBackStack, tag);
-    }
-
     public void addFragment(int containerId, BaseFragment fragment, boolean addToBackStack, String tag) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        transaction.setCustomAnimations(R.anim.screen_enter,
-                R.anim.screen_exit, R.anim.slide_none,
-                R.anim.screen_pop_exit);
-        transaction.add(containerId, fragment, tag);
-
-        if (addToBackStack) {
-            transaction.addToBackStack(fragment.getClass().getSimpleName());
-        }
-
-        transaction.commit();
+        ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, containerId, addToBackStack, tag);
     }
 
     public void addFragment(int containerId, BaseFragment fragment, boolean addToBackStack) {
         addFragment(containerId, fragment, addToBackStack, fragment.getClass().getSimpleName());
+    }
+
+    public void addFragment(int containerId, BaseFragment fragment) {
+        addFragment(containerId, fragment, false, null);
     }
 
     @Override

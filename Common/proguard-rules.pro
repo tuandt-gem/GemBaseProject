@@ -16,36 +16,39 @@
 #   public *;
 #}
 
+# For android test
+-dontwarn com.google.common.**
+
 -keepattributes *Annotation*,EnclosingMethod,Signature
 
 ########### For Android Support libs ###########
 # The support library contains references to newer platform versions.
 # Don't warn about those in case this app is linking against an older
 # platform version.  We know about them, and they are safe.
-#-dontwarn android.support.**
+-dontwarn android.support.**
 
 ########### For Android Support Design ###########
-#-dontwarn android.support.design.**
-#-keep class android.support.design.** { *; }
-#-keep interface android.support.design.** { *; }
-#-keep public class android.support.design.R$* { *; }
+-dontwarn android.support.design.**
+-keep class android.support.design.** { *; }
+-keep interface android.support.design.** { *; }
+-keep public class android.support.design.R$* { *; }
 
 ########### For Android Support CardView ###########
-#-keep class android.support.v7.widget.RoundRectDrawable { *; }
+-keep class android.support.v7.widget.RoundRectDrawable { *; }
 
 ########### For Android appcombat ###########
-#-dontwarn android.support.v7.**
-#-keep class android.support.v7.** { *; }
-#-keep interface android.support.v7.** { *; }
+-dontwarn android.support.v7.**
+-keep class android.support.v7.** { *; }
+-keep interface android.support.v7.** { *; }
 
 ########## For RecyclerView$LayoutManager ###########
-#-keep public class * extends android.support.v7.widget.RecyclerView$LayoutManager {
-#    public <init>(...);
-#}
+-keep public class * extends android.support.v7.widget.RecyclerView$LayoutManager {
+    public <init>(...);
+}
 
 ########### For v7 ###########
-#-keep class android.support.v7.widget.** { *; }
-#-dontwarn android.support.v7.widget.**
+-keep class android.support.v7.widget.** { *; }
+-dontwarn android.support.v7.widget.**
 
 ########### For butter knife ###########
 -dontwarn butterknife.internal.**

@@ -1,6 +1,6 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.login;
 
-import com.gemvietnam.hocvalam.R;
+import com.gemvietnam.hocvalam.socialNetwork.R;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

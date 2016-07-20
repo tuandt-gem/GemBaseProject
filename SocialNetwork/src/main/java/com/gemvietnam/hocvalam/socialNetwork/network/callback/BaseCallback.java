@@ -1,7 +1,7 @@
 package com.gemvietnam.hocvalam.socialNetwork.network.callback;
 
 
-import com.gemvietnam.hocvalam.R;
+import com.gemvietnam.hocvalam.socialNetwork.R;
 import com.gemvietnam.hocvalam.socialNetwork.SocialNetworkApp;
 import com.gemvietnam.hocvalam.socialNetwork.network.dto.ResponseDTO;
 
