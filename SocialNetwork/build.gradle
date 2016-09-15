@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.gemvietnam.hocvalam"
+        applicationId "com.gemvietnam.core"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -35,82 +35,29 @@ android {
         }
     }
 
-    productFlavors {
-        dev {
-            versionCode 1
-            versionName "0.9.1"
-            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
-        }
-
-        qa {
-            versionCode 1
-            versionName "0.9.1"
-            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
-        }
-
-        staging {
-            versionCode 1
-            versionName "0.9.1"
-            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
-        }
-
-        production {
-            versionCode 1
-            versionName "0.9.1"
-            buildConfigField("String", "NOTIFICATION_SENDER_ID", "\"650508324913\"")
-        }
-    }
-}
-
-// Build type configurations
-configurations {
-    devDebugCompile
-    devReleaseCompile
-    qaDebugCompile
-    qaReleaseCompile
-    stagingDebugCompile
-    stagingReleaseCompile
-    productionDebugCompile
-    productionReleaseCompile
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':Common')
+    compile project(':GemCore')
     compile project(':SuperRecyclerView')
-    // Setup build type for Common module
-    devDebugCompile project(path: ':Common', configuration: 'devDebug')
-    devReleaseCompile project(path: ':Common', configuration: 'devRelease')
-    qaDebugCompile project(path: ':Common', configuration: 'qaDebug')
-    qaReleaseCompile project(path: ':Common', configuration: 'qaRelease')
-    stagingDebugCompile project(path: ':Common', configuration: 'stagingDebug')
-    stagingReleaseCompile project(path: ':Common', configuration: 'stagingRelease')
-    productionDebugCompile project(path: ':Common', configuration: 'productionDebug')
-    productionReleaseCompile project(path: ':Common', configuration: 'productionRelease')
 
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
-
+    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
     // Android Testing Support Library's runner and rules
     androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
     androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
-
     // Dependencies for Android unit tests
     androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
     androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
-
     // Espresso UI Testing
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
-
-    // Resolve conflicts between main and test APK:
-    androidTestCompile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
-    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
 
 }

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
 
-    <com.gemvietnam.common.view.CTextView
+    <com.gemvietnam.view.CTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/app_logo"

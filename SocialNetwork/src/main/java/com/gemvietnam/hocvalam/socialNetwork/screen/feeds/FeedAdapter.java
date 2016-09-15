@@ -1,12 +1,11 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.feeds;
 
-import com.gemvietnam.common.base.log.Logger;
-import com.gemvietnam.common.utils.DateTimeUtils;
-import com.gemvietnam.common.utils.image.ImageUtils;
-import com.gemvietnam.common.view.BaseViewHolder;
-import com.gemvietnam.common.view.ExpandableTextView;
 import com.gemvietnam.hocvalam.socialNetwork.R;
 import com.gemvietnam.hocvalam.socialNetwork.network.dto.Feed;
+import com.gemvietnam.utils.DateTimeUtils;
+import com.gemvietnam.utils.image.ImageUtils;
+import com.gemvietnam.view.BaseViewHolder;
+import com.gemvietnam.view.ExpandableTextView;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,13 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Feeds adapter for feeds list

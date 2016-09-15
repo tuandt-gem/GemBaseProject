@@ -1,7 +1,5 @@
 package com.gemvietnam.hocvalam.socialNetwork.network;
 
-import com.gemvietnam.common.base.log.Logger;
-import com.gemvietnam.hocvalam.socialNetwork.Environments;
 
 import java.io.IOException;
 
@@ -18,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by neo on 2/15/2016.
  */
 public class ServiceBuilder {
-    public static final String BASE_URL = Environments.END_POINT + "api_yii2.php/v1/";
+    public static final String BASE_URL = "http://172.16.10.125/api_yii2.php/v1/";
 
     private static Retrofit sInstance;
     private static SocialNetworkService sService;
@@ -36,7 +34,7 @@ public class ServiceBuilder {
                         Request original = chain.request();
 
                         String userAgent = System.getProperty("http.agent");
-                        Logger.d("User-agent " + userAgent);
+//                        Logger.d("User-agent " + userAgent);
                         Request request = original.newBuilder()
                                 .header("User-Agent", userAgent)
                                 .method(original.method(), original.body())

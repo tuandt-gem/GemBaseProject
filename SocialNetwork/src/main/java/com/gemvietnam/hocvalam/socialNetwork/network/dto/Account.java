@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
  * Created by neo on 7/19/2016.
  */
 public class Account {
+    private static Account sInstance;
+
     @SerializedName("name")
     private String mName;
 
@@ -16,5 +18,13 @@ public class Account {
 
     public String getName() {
         return mName;
+    }
+
+    public static Account getInstance() {
+        return sInstance;
+    }
+
+    public static void setInstance(Account account) {
+        sInstance = account;
     }
 }

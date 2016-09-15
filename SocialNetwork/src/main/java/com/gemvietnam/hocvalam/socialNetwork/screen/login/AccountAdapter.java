@@ -1,6 +1,6 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.login;
 
-import com.gemvietnam.common.view.BaseViewHolder;
+import com.gemvietnam.view.BaseViewHolder;
 import com.gemvietnam.hocvalam.socialNetwork.R;
 import com.gemvietnam.hocvalam.socialNetwork.network.dto.Account;
 

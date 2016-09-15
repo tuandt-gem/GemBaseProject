@@ -1,9 +1,7 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.feeds;
 
-import com.gemvietnam.common.base.BasePresenterImpl;
+import com.gemvietnam.base.viper.Presenter;
 import com.gemvietnam.hocvalam.socialNetwork.network.dto.Feed;
-
-import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,8 @@ import java.util.List;
  * Feeds Presenter
  * Created by neo on 7/19/2016.
  */
-public class FeedsPresenter extends BasePresenterImpl<FeedsContract.View> implements FeedsContract.Presenter {
+public class FeedsPresenter extends Presenter<FeedsContract.View, FeedsContract.Router,
+        FeedsContract.Interactor> implements FeedsContract.Presenter {
     private FeedAdapter mFeedAdapter;
     private List<Feed> mFeeds = new ArrayList<>();
 
@@ -34,21 +33,15 @@ public class FeedsPresenter extends BasePresenterImpl<FeedsContract.View> implem
 
     @Override
     public void getFeeds() {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-                List<Feed> feeds = new ArrayList<>();
-                for (int i = 0; i < 10; i++) {
-                    feeds.add(Feed.getInstance());
-                }
+        mInteractor.getFeeds();
+    }
 
-                mFeeds.clear();
-                mFeeds.addAll(feeds);
-                mView.loadFeeds(getFeedAdapter());
-                getFeedAdapter().notifyDataSetChanged();
-
-//            }
-//        }, 3000);
+    @Override
+    public void onFeedsLoaded(List<Feed> feeds) {
+        mFeeds.clear();
+        mFeeds.addAll(feeds);
+        mView.loadFeeds(getFeedAdapter());
+        getFeedAdapter().notifyDataSetChanged();
     }
 
     /**
@@ -56,5 +49,15 @@ public class FeedsPresenter extends BasePresenterImpl<FeedsContract.View> implem
      */
     private FeedAdapter createFeedAdapter() {
         return new FeedAdapter(mView.getViewContext(), mFeeds);
+    }
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public FeedsContract.Interactor onCreateInteractor() {
+        return new FeedsInteractor(this);
     }
 }

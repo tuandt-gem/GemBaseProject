@@ -1,7 +1,7 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.splash;
 
-import com.gemvietnam.common.base.log.Logger;
-import com.gemvietnam.common.utils.DeviceUtils;
+import com.gemvietnam.base.log.Logger;
+import com.gemvietnam.utils.DeviceUtils;
 import com.gemvietnam.hocvalam.socialNetwork.R;
 import com.gemvietnam.hocvalam.socialNetwork.screen.login.FakeLoginActivity;
 

@@ -1,9 +1,8 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.feeds;
 
-import com.gemvietnam.common.base.BaseFragment;
-import com.gemvietnam.common.utils.CollectionUtils;
+import com.gemvietnam.base.viper.ViewFragment;
 import com.gemvietnam.hocvalam.socialNetwork.R;
-import com.malinskiy.superrecyclerview.SuperRecyclerView;
+import com.gemvietnam.utils.CollectionUtils;
 
 import android.support.v7.widget.RecyclerView;
 
@@ -13,7 +12,8 @@ import butterknife.Bind;
  * Feeds Activity
  * Created by neo on 7/19/2016.
  */
-public class FeedsFragment extends BaseFragment<FeedsContract.Presenter> implements FeedsContract.View {
+public class FeedsFragment extends ViewFragment<FeedsContract.Presenter>
+        implements FeedsContract.View {
     @Bind(R.id.feed_recycler_view)
     RecyclerView mRecyclerView;
 
@@ -35,9 +35,9 @@ public class FeedsFragment extends BaseFragment<FeedsContract.Presenter> impleme
     public void initLayout() {
         CollectionUtils.setupVerticalRecyclerView(getActivity(), mRecyclerView);
 
-        mRecyclerView.setAdapter(getPresenter().getFeedAdapter());
+        mRecyclerView.setAdapter(mPresenter.getFeedAdapter());
 
-        getPresenter().getFeeds();
+        mPresenter.getFeeds();
     }
 
     @Override

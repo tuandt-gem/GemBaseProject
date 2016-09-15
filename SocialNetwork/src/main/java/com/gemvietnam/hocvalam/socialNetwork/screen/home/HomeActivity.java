@@ -1,31 +1,31 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.home;
 
-import com.gemvietnam.common.base.BaseActivity;
-import com.gemvietnam.hocvalam.socialNetwork.R;
-import com.gemvietnam.hocvalam.socialNetwork.screen.feeds.FeedsFragment;
+import com.gemvietnam.base.BaseActivity;
+import com.gemvietnam.base.ContainerActivity;
+import com.gemvietnam.base.viper.ViewFragment;
+import com.gemvietnam.hocvalam.socialNetwork.screen.feeds.FeedsRouter;
+
+import android.app.Activity;
 
 /**
  * Home Activity
  * Created by neo on 7/19/2016.
  */
-public class HomeActivity extends BaseActivity<HomeContract.Presenter> implements HomeContract.View {
+public class HomeActivity extends ContainerActivity {
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_home;
+    public ViewFragment onCreateFirstFragment() {
+        return (ViewFragment) new FeedsRouter(this).getView();
     }
 
-    @Override
-    public HomeContract.Presenter onCreatePresenter() {
-        return new HomePresenter(this);
-    }
 
     @Override
-    public void initLayout() {
-        super.initLayout();
-        addFeedsFragment();
+    public BaseActivity getBaseActivity() {
+        return null;
     }
 
-    private void addFeedsFragment() {
-        addFragment(R.id.home_frame, FeedsFragment.getInstance());
+
+    @Override
+    public Activity getViewContext() {
+        return null;
     }
 }

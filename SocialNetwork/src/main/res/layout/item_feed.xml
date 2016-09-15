@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.gemvietnam.common.view.SquareImage
+            <com.gemvietnam.view.SquareImage
                 android:id="@+id/item_feed_avatar_iv"
                 android:layout_width="@dimen/feed_avatar_size"
                 android:layout_height="@dimen/feed_avatar_size"
@@ -33,12 +33,12 @@
                 android:layout_marginRight="@dimen/padding_view_common"
                 android:layout_height="wrap_content">
 
-                <com.gemvietnam.common.view.CTextView
+                <com.gemvietnam.view.CTextView
                     android:id="@+id/item_feed_name_tv"
                     style="@style/Text.Name.Single"
                     android:text="Huong Duong"/>
 
-                <com.gemvietnam.common.view.CTextView
+                <com.gemvietnam.view.CTextView
                     android:id="@+id/item_feed_date_tv"
                     style="@style/Text.Date"
                     android:layout_marginTop="@dimen/padding_small"
@@ -63,7 +63,7 @@
                 android:layout_gravity="top"/>
         </LinearLayout>
 
-        <com.gemvietnam.common.view.ExpandableTextView
+        <com.gemvietnam.view.ExpandableTextView
             android:id="@+id/item_feed_content_tv"
             style="@style/Text.Content"
             android:layout_marginTop="@dimen/padding_view_common"
