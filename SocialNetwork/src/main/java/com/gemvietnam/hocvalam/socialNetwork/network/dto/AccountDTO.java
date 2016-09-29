@@ -3,16 +3,16 @@ package com.gemvietnam.hocvalam.socialNetwork.network.dto;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Account
+ * AccountDTO
  * Created by neo on 7/19/2016.
  */
-public class Account {
-    private static Account sInstance;
-
+public class AccountDTO {
     @SerializedName("name")
     private String mName;
 
-    public Account(String name) {
+    public AccountDTO(){};
+
+    public AccountDTO(String name) {
         mName = name;
     }
 
@@ -20,11 +20,8 @@ public class Account {
         return mName;
     }
 
-    public static Account getInstance() {
-        return sInstance;
-    }
-
-    public static void setInstance(Account account) {
-        sInstance = account;
+    public AccountDTO setName(String name) {
+        mName = name;
+        return this;
     }
 }

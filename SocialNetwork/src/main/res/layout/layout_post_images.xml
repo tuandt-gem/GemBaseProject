@@ -6,20 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.gemvietnam.view.SquareImage
+    <com.gemvietnam.hocvalam.socialNetwork.widget.SquareImage
         android:id="@+id/post_image_1"
         style="@style/ImagePost"
         android:layout_marginLeft="0dp"/>
 
-    <com.gemvietnam.view.SquareImage
+    <com.gemvietnam.hocvalam.socialNetwork.widget.SquareImage
         android:id="@+id/post_image_2"
         style="@style/ImagePost"/>
 
-    <com.gemvietnam.view.SquareImage
+    <com.gemvietnam.hocvalam.socialNetwork.widget.SquareImage
         android:id="@+id/post_image_3"
         style="@style/ImagePost"/>
 
-    <com.gemvietnam.view.CTextView
+    <com.gemvietnam.widget.CTextView
         android:id="@+id/post_more_image_tv"
         style="@style/Text.MoreImage"
         android:layout_gravity="center"

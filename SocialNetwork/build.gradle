@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion project.compileSdkVersion as int
+    buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.gemvietnam.core"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion project.minSdkVersion as int
+        targetSdkVersion project.targetSdkVersion as int
+        applicationId "com.gemvietnam.hocvalam.socialNetwork"
         versionCode 1
         versionName "0.9.1"
     }
@@ -43,21 +43,32 @@ dependencies {
     compile project(':SuperRecyclerView')
 
     // Dependencies for local unit tests
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
-    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
-    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
-    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+//    testCompile "junit:junit:{junitVersion}"
+//    testCompile "org.mockito:mockito-all:{mockitoVersion}"
+//    testCompile "org.hamcrest:hamcrest-all:{hamcrestVersion}"
+//    androidTestCompile "com.android.support:support-annotations:{supportLibraryVersion}"
     // Android Testing Support Library's runner and rules
-    androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-    androidTestCompile "com.android.support.test:rules:$rootProject.ext.runnerVersion"
+//    androidTestCompile "com.android.support.test:runner:{runnerVersion}"
+//    androidTestCompile ("com.android.support.test:rules:{runnerVersion}") {
+    // Necessary if your app targets Marshmallow (since the test runner
+    // hasn't moved to Marshmallow yet)
+//        exclude group: 'com.android.support', module: 'support-v4'
+//        exclude group: 'com.android.support', module: 'recyclerview-v7'
+//    }
     // Dependencies for Android unit tests
-    androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
-    androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+//    androidTestCompile "junit:junit:{junitVersion}"
+//    androidTestCompile "org.mockito:mockito-core:{mockitoVersion}"
+//    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+//    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
     // Espresso UI Testing
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
+//    androidTestCompile ("com.android.support.test.espresso:espresso-core:{espressoVersion}"){
+    // Necessary if your app targets Marshmallow (since Espresso
+    // hasn't moved to Marshmallow yet)
+//        exclude group: 'com.android.support', module: 'support-v4'
+//        exclude group: 'com.android.support', module: 'recyclerview-v7'
+//    }
+//    androidTestCompile "com.android.support.test.espresso:espresso-contrib:{espressoVersion}"
+//    androidTestCompile "com.android.support.test.espresso:espresso-intents:{espressoVersion}"
 
+    compile 'com.android.support:appcompat-v7:24.2.1'
 }

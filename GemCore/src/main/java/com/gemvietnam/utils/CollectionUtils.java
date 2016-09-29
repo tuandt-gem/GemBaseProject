@@ -1,19 +1,17 @@
 package com.gemvietnam.utils;
 
-import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import java.util.List;
 
 /**
  * Collection Utils
- * Created by neo on 7/20/2016.
+ * Created by neo on 9/27/2016.
  */
-public class CollectionUtils {
 
-    public static void setupVerticalRecyclerView(Context context, RecyclerView mRecyclerView) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setClipToPadding(false);
-        mRecyclerView.setHasFixedSize(true);
+public class CollectionUtils {
+    /**
+     * Check if list is null or empty
+     */
+    public static boolean isEmpty(List list) {
+        return list == null || list.size() == 0;
     }
 }

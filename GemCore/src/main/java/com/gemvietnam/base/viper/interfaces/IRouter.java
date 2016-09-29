@@ -1,14 +1,18 @@
 package com.gemvietnam.base.viper.interfaces;
 
 
+import android.support.v4.app.Fragment;
+
 /**
  * Base Router
  * Created by neo on 8/29/2016.
  */
-public interface IRouter<V extends IView> {
+public interface IRouter {
     void present();
 
-    V getView();
+    IView getView();
+//
+//    V onCreatePresenter();
 
-    V onCreateView();
+    Fragment getFragment();
 }

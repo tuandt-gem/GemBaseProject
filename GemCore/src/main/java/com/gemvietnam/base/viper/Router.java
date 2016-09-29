@@ -1,29 +1,39 @@
 package com.gemvietnam.base.viper;
 
 import com.gemvietnam.base.viper.interfaces.ContainerView;
+import com.gemvietnam.base.viper.interfaces.IPresenter;
 import com.gemvietnam.base.viper.interfaces.IRouter;
 import com.gemvietnam.base.viper.interfaces.IView;
+
+import android.support.v4.app.Fragment;
 
 /**
  * Base Router
  * Created by neo on 8/29/2016.
  */
-public abstract class Router<V extends IView> implements IRouter<V> {
-    protected V mView;
+public abstract class Router<P extends IPresenter> implements IRouter {
+    protected P mPresenter;
     protected ContainerView mContainerView;
 
     public Router(ContainerView containerView) {
         mContainerView = containerView;
-        mView = onCreateView();
+        mPresenter = onCreatePresenter();
     }
+
+    protected abstract P onCreatePresenter();
 
     @Override
     public void present() {
-        mContainerView.addView(mView);
+        mContainerView.addView(mPresenter.getView());
     }
 
     @Override
-    public V getView() {
-        return mView;
+    public IView getView() {
+        return mPresenter.getView();
+    }
+
+    @Override
+    public Fragment getFragment() {
+        return getView() instanceof Fragment ? (Fragment) getView() : null;
     }
 }

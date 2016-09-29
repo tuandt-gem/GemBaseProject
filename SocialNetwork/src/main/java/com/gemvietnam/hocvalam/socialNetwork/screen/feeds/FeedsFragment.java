@@ -2,7 +2,8 @@ package com.gemvietnam.hocvalam.socialNetwork.screen.feeds;
 
 import com.gemvietnam.base.viper.ViewFragment;
 import com.gemvietnam.hocvalam.socialNetwork.R;
-import com.gemvietnam.utils.CollectionUtils;
+import com.gemvietnam.hocvalam.socialNetwork.model.Feed;
+import com.gemvietnam.utils.RecyclerUtils;
 
 import android.support.v7.widget.RecyclerView;
 
@@ -27,21 +28,21 @@ public class FeedsFragment extends ViewFragment<FeedsContract.Presenter>
     }
 
     @Override
-    public FeedsContract.Presenter onCreatePresenter() {
-        return new FeedsPresenter(this);
-    }
-
-    @Override
     public void initLayout() {
-        CollectionUtils.setupVerticalRecyclerView(getActivity(), mRecyclerView);
-
-        mRecyclerView.setAdapter(mPresenter.getFeedAdapter());
-
-        mPresenter.getFeeds();
+        RecyclerUtils.setupVerticalRecyclerView(getActivity(), mRecyclerView);
     }
 
     @Override
-    public void loadFeeds(FeedAdapter feedAdapter) {
-        mRecyclerView.setAdapter(feedAdapter);
+    public void loadFeeds(FeedsContract.ViewModel viewModel) {
+        if (mRecyclerView.getAdapter() == null) {
+            mRecyclerView.setAdapter(viewModel.getFeedAdapter());
+        } else {
+            mRecyclerView.getAdapter().notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onItemClicked(Feed feed) {
+        mPresenter.viewDetail(feed);
     }
 }

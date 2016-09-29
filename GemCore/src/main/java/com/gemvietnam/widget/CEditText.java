@@ -1,4 +1,4 @@
-package com.gemvietnam.view;
+package com.gemvietnam.widget;
 
 import com.gemvietnam.common.R;
 import com.gemvietnam.utils.StringUtils;

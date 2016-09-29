@@ -1,4 +1,4 @@
-package com.gemvietnam.view;
+package com.gemvietnam.hocvalam.socialNetwork.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

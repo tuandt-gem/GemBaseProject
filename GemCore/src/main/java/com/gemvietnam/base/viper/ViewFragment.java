@@ -3,6 +3,7 @@ package com.gemvietnam.base.viper;
 import com.gemvietnam.base.BaseActivity;
 import com.gemvietnam.base.BaseFragment;
 import com.gemvietnam.base.viper.interfaces.IPresenter;
+import com.gemvietnam.base.viper.interfaces.IViewModel;
 import com.gemvietnam.base.viper.interfaces.PresentView;
 import com.gemvietnam.common.R;
 import com.gemvietnam.utils.ContextUtils;
@@ -20,17 +21,14 @@ import android.view.ViewGroup;
  * Fragments that stand for View
  * Created by neo on 9/15/2016.
  */
-public abstract class ViewFragment <P extends IPresenter> extends BaseFragment implements
-        PresentView<P> {
+public abstract class ViewFragment<P extends IPresenter>
+        extends BaseFragment implements PresentView<P> {
     protected P mPresenter;
     protected boolean mIsInitialized = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Presenter for this view
-        if (mPresenter == null)
-            mPresenter = onCreatePresenter();
     }
 
     @Nullable
@@ -68,22 +66,28 @@ public abstract class ViewFragment <P extends IPresenter> extends BaseFragment i
 
     @Override
     public void showProgress() {
-
+        if (ContextUtils.isValidContext(getBaseActivity())) {
+            getBaseActivity().showProgress();
+        }
     }
 
     @Override
     public void hideProgress() {
-
+        if (ContextUtils.isValidContext(getBaseActivity())) {
+            getBaseActivity().hideKeyboard();
+        }
     }
 
     @Override
     public void initLayout() {
-
+        // Override this method when need to preview some views, layouts
     }
 
     @Override
     public void showAlertDialog(String message) {
-
+        if (ContextUtils.isValidContext(getBaseActivity())) {
+            getBaseActivity().showAlertDialog(message);
+        }
     }
 
     @Override
@@ -119,6 +123,11 @@ public abstract class ViewFragment <P extends IPresenter> extends BaseFragment i
     @Override
     public Activity getViewContext() {
         return getActivity();
+    }
+
+    @Override
+    public void setPresenter(P presenter) {
+        mPresenter = presenter;
     }
 
     /**

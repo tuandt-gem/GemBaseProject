@@ -7,7 +7,7 @@ import com.gemvietnam.base.viper.interfaces.IPresenter;
  * Base Interactor
  * Created by neo on 8/29/2016.
  */
-public class Interactor<P extends IPresenter> implements IInteractor {
+public class Interactor<P extends IPresenter> implements IInteractor<P> {
     protected P mPresenter;
 
     public Interactor(P presenter) {

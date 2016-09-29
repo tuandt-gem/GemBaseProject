@@ -1,7 +1,9 @@
 package com.gemvietnam.base;
 
 import com.gemvietnam.base.viper.interfaces.ContainerView;
+import com.gemvietnam.base.viper.interfaces.IPresenter;
 import com.gemvietnam.base.viper.interfaces.IView;
+import com.gemvietnam.base.viper.interfaces.IViewModel;
 import com.gemvietnam.common.R;
 
 import android.support.v4.app.FragmentManager;
@@ -38,11 +40,11 @@ public abstract class ContainerActivity extends BaseActivity implements Containe
 
     @Override
     public void initLayout() {
-        addView(onCreateFirstFragment());
+        addFragment(onCreateFirstFragment(), false);
     }
 
     @Override
-    public FragmentManager createFragmentManager() {
-        return getSupportFragmentManager();
+    public void setPresenter(IPresenter presenter) {
+        // Nothing to do
     }
 }

@@ -1,15 +1,14 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.feeds;
 
+import com.gemvietnam.base.adapter.RecyclerBaseAdapter;
 import com.gemvietnam.hocvalam.socialNetwork.R;
-import com.gemvietnam.hocvalam.socialNetwork.network.dto.Feed;
-import com.gemvietnam.utils.DateTimeUtils;
+import com.gemvietnam.hocvalam.socialNetwork.model.Feed;
+import com.gemvietnam.hocvalam.socialNetwork.util.DateTimeUtils;
+import com.gemvietnam.hocvalam.socialNetwork.widget.ExpandableTextView;
 import com.gemvietnam.utils.image.ImageUtils;
-import com.gemvietnam.view.BaseViewHolder;
-import com.gemvietnam.view.ExpandableTextView;
+import com.gemvietnam.widget.BaseViewHolder;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,113 +22,25 @@ import butterknife.Bind;
  * Feeds adapter for feeds list
  * Created by neo on 7/20/2016.
  */
-public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
-    private Context mContext;
-    private List<Feed> mFeeds;
+class FeedAdapter extends RecyclerBaseAdapter<Feed, FeedAdapter.ViewHolder> {
+    private OnItemAction mOnItemAction;
 
-    public FeedAdapter(Context context, List<Feed> feeds) {
-        mContext = context;
-        mFeeds = feeds;
+    FeedAdapter(Context context, List<Feed> feeds) {
+        super(context, feeds);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_feed, parent, false));
+        return new ViewHolder(inflateView(parent, R.layout.item_feed));
     }
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Feed feed = getItem(position);
-
-        // Set author
-        holder.mNameTv.setText(feed.getName());
-
-        // Load avatar
-        ImageUtils.loadImage(mContext, feed.getAvatar(), holder.mAvatar);
-
-        // Set published Date
-        holder.mDateTv.setText(DateTimeUtils.formatDate(mContext, feed.getDate()));
-
-        // Set content
-        holder.mContentTv.setText(feed.getContent());
-
-        // Set post images
-        bindImages(holder, feed);
-
-        // Set Like count
-        holder.mLikeCountTv.setText(String.valueOf(feed.getLikeCount()));
-
-        // Set Comment count
-        holder.mCommentCountTv.setText(String.valueOf(feed.getCommentCount()));
-
-        // Set Share count
-        holder.mShareCountTv.setText(String.valueOf(feed.getShareCount()));
-
-        // Set activities summary
-        holder.mActivitySummaryTv.setText(String.format(mContext.getString(R.string.activity_summary_format),
-                feed.getActivityCount()));
+    public FeedAdapter setOnItemAction(OnItemAction onItemAction) {
+        mOnItemAction = onItemAction;
+        return this;
     }
 
-    /**
-     * Bind post images
-     */
-    private void bindImages(ViewHolder holder, Feed feed) {
-        List<String> images = feed.getImages();
-        if (images == null || images.size() == 0) {
-            holder.mPostImageContainer.setVisibility(View.GONE);
-        } else {
-            holder.mPostImageContainer.setVisibility(View.VISIBLE);
-            int size = images.size();
 
-            switch (size) {
-                case 1:
-                    ImageUtils.loadImage(mContext, images.get(0), holder.mPostImage1);
-                    holder.mPostImage1.setVisibility(View.VISIBLE);
-                    holder.mPostImage2.setVisibility(View.GONE);
-                    holder.mPostImage3.setVisibility(View.GONE);
-                    holder.mMoreImageTv.setVisibility(View.GONE);
-                    break;
-                case 2:
-                    ImageUtils.loadImage(mContext, images.get(0), holder.mPostImage1);
-                    ImageUtils.loadImage(mContext, images.get(1), holder.mPostImage2);
-                    holder.mPostImage1.setVisibility(View.VISIBLE);
-                    holder.mPostImage2.setVisibility(View.VISIBLE);
-                    holder.mPostImage3.setVisibility(View.GONE);
-                    holder.mMoreImageTv.setVisibility(View.GONE);
-                    break;
-                case 3:
-                    ImageUtils.loadImage(mContext, images.get(0), holder.mPostImage1);
-                    ImageUtils.loadImage(mContext, images.get(1), holder.mPostImage2);
-                    ImageUtils.loadImage(mContext, images.get(2), holder.mPostImage3);
-                    holder.mPostImage1.setVisibility(View.VISIBLE);
-                    holder.mPostImage2.setVisibility(View.VISIBLE);
-                    holder.mPostImage3.setVisibility(View.VISIBLE);
-                    holder.mMoreImageTv.setVisibility(View.GONE);
-                    break;
-                default:
-                    ImageUtils.loadImage(mContext, images.get(0), holder.mPostImage1);
-                    ImageUtils.loadImage(mContext, images.get(1), holder.mPostImage2);
-                    ImageUtils.loadImage(mContext, images.get(2), holder.mPostImage3);
-                    holder.mMoreImageTv.setText(String.format(mContext.getString(R.string.more_image_format), size -3));
-                    holder.mPostImage1.setVisibility(View.VISIBLE);
-                    holder.mPostImage2.setVisibility(View.VISIBLE);
-                    holder.mPostImage3.setVisibility(View.VISIBLE);
-                    holder.mMoreImageTv.setVisibility(View.VISIBLE);
-                    break;
-            }
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return mFeeds.size();
-    }
-
-    public Feed getItem(int position) {
-        return mFeeds.get(position);
-    }
-
-    public class ViewHolder extends BaseViewHolder {
+    class ViewHolder extends BaseViewHolder<Feed> {
         @Bind(R.id.item_feed_name_tv)
         TextView mNameTv;
         @Bind(R.id.item_feed_date_tv)
@@ -155,10 +66,110 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         @Bind(R.id.post_images_container_ll)
         View mPostImageContainer;
         @Bind(R.id.item_feed_avatar_iv)
-        public ImageView mAvatar;
+        ImageView mAvatar;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
         }
+
+        @Override
+        public void bindView(final Feed feed) {
+            // Set author
+            mNameTv.setText(feed.getName());
+
+            // Load avatar
+            ImageUtils.loadImage(mContext, feed.getAvatar(), mAvatar);
+
+            // Set published Date
+            mDateTv.setText(DateTimeUtils.formatDate(mContext, feed.getDate()));
+
+            // Set content
+            mContentTv.setText(feed.getContent());
+
+            // Set post images
+            bindImages(feed);
+
+            // Set Like count
+            mLikeCountTv.setText(String.valueOf(feed.getLikeCount()));
+
+            // Set Comment count
+            mCommentCountTv.setText(String.valueOf(feed.getCommentCount()));
+
+            // Set Share count
+            mShareCountTv.setText(String.valueOf(feed.getShareCount()));
+
+            // Set activities summary
+            mActivitySummaryTv.setText(
+                    String.format(mContext.getString(R.string.activity_summary_format),
+                    feed.getActivityCount()));
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mOnItemAction != null) {
+                        mOnItemAction.onItemClicked(feed);
+                    }
+                }
+            });
+        }
+
+        /**
+         * Bind post images
+         */
+        private void bindImages(Feed feed) {
+            List<String> images = feed.getImages();
+            if (images == null || images.size() == 0) {
+                mPostImageContainer.setVisibility(View.GONE);
+            } else {
+                mPostImageContainer.setVisibility(View.VISIBLE);
+                int size = images.size();
+
+                switch (size) {
+                    case 1:
+                        ImageUtils.loadImage(mContext, images.get(0), mPostImage1);
+                        mPostImage1.setVisibility(View.VISIBLE);
+                        mPostImage2.setVisibility(View.GONE);
+                        mPostImage3.setVisibility(View.GONE);
+                        mMoreImageTv.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        ImageUtils.loadImage(mContext, images.get(0), mPostImage1);
+                        ImageUtils.loadImage(mContext, images.get(1), mPostImage2);
+                        mPostImage1.setVisibility(View.VISIBLE);
+                        mPostImage2.setVisibility(View.VISIBLE);
+                        mPostImage3.setVisibility(View.GONE);
+                        mMoreImageTv.setVisibility(View.GONE);
+                        break;
+                    case 3:
+                        ImageUtils.loadImage(mContext, images.get(0), mPostImage1);
+                        ImageUtils.loadImage(mContext, images.get(1), mPostImage2);
+                        ImageUtils.loadImage(mContext, images.get(2), mPostImage3);
+                        mPostImage1.setVisibility(View.VISIBLE);
+                        mPostImage2.setVisibility(View.VISIBLE);
+                        mPostImage3.setVisibility(View.VISIBLE);
+                        mMoreImageTv.setVisibility(View.GONE);
+                        break;
+                    default:
+                        ImageUtils.loadImage(mContext, images.get(0), mPostImage1);
+                        ImageUtils.loadImage(mContext, images.get(1), mPostImage2);
+                        ImageUtils.loadImage(mContext, images.get(2), mPostImage3);
+                        mMoreImageTv.setText(
+                                String.format(mContext.getString(R.string.more_image_format),
+                                        size - 3));
+                        mPostImage1.setVisibility(View.VISIBLE);
+                        mPostImage2.setVisibility(View.VISIBLE);
+                        mPostImage3.setVisibility(View.VISIBLE);
+                        mMoreImageTv.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Actions in item
+     */
+    public interface OnItemAction {
+        void onItemClicked(Feed feed);
     }
 }

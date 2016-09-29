@@ -1,6 +1,7 @@
-package com.gemvietnam.view;
+package com.gemvietnam.hocvalam.socialNetwork.widget;
 
-import com.gemvietnam.common.R;
+import com.gemvietnam.hocvalam.socialNetwork.R;
+import com.gemvietnam.widget.CTextView;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion project.compileSdkVersion as int
+    buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion project.minSdkVersion as int
+        targetSdkVersion project.targetSdkVersion as int
         versionCode 7
         versionName "1.1.4"
     }
@@ -19,8 +19,8 @@ android {
 }
 
 dependencies {
-    compile "com.nineoldandroids:library:$rootProject.ext.nineOldAndroidsVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.nineoldandroids:library:${nineOldAndroidsVersion}"
+    compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
 }
 
 if (JavaVersion.current().isJava8Compatible()) {

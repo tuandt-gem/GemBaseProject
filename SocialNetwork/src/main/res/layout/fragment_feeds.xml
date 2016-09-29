@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/bg_grey">
 
+    <include layout="@layout/ab_home"/>
+
     <!--<ScrollView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent">-->

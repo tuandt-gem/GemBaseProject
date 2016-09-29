@@ -11,6 +11,5 @@ import android.support.v4.app.FragmentManager;
  */
 public interface ContainerView extends IView {
     ViewFragment onCreateFirstFragment();
-    FragmentManager createFragmentManager();
     void addView(IView fragment);
 }

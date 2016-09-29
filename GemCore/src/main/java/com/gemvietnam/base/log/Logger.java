@@ -19,9 +19,9 @@ public class Logger {
     // private static final double MEMORY_BUFFER_LIMIT_FOR_RESTART = 0;
 
     // Change to false when release
-    public static final boolean DEBUG_MODE = BuildConfig.DEBUG;
+    private static final boolean DEBUG_MODE = BuildConfig.DEBUG;
 
-    private static final String TAG = "HVL";
+    private static final String TAG = "GEM";
 
     public static void e(String msg) {
         if (DEBUG_MODE)

@@ -1,7 +1,9 @@
-package com.gemvietnam.view;
+package com.gemvietnam.widget;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import java.lang.reflect.InvocationTargetException;
 
 import butterknife.ButterKnife;
 
@@ -9,9 +11,12 @@ import butterknife.ButterKnife;
  * Base View Holder for RecyclerView Adapter
  * Created by neo on 7/18/2016.
  */
-public class BaseViewHolder extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder<Model> extends RecyclerView.ViewHolder {
+
     public BaseViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
+
+    public abstract void bindView(Model model);
 }

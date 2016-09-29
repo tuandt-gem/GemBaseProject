@@ -12,11 +12,18 @@
 
     <!-- Common msg -->
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
     <string name="msg_server_error">Kết nối máy chủ thất bại. Vui lòng thử lại sau.</string>
 
-    <!-- Feed -->
+    <!-- FeedDTO -->
     <string name="more_image_format">+%s</string>
     <string name="no_data">Không có dữ liệu</string>
     <string name="activity_summary_format">%d hoạt động</string>
+
+    <!-- Date time -->
+    <string name="default_date_time_format">Ngày %1$d tháng %2$d năm %3$d %4$d:%5$d</string>
+    <string name="date_format_without_time">Ngày %1$d tháng %2$d năm %3$d</string>
+    <string name="see_more">Xem thêm</string>
 </resources>

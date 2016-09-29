@@ -7,27 +7,27 @@
     android:padding="@dimen/padding_view_common"
     android:background="@color/bg_activity_summary">
 
-    <com.gemvietnam.view.CTextView
+    <com.gemvietnam.widget.CTextView
         android:id="@+id/post_like_count_tv"
         style="@style/Text.ActivityCount"
         android:text="3"
         android:drawableLeft="@drawable/ic_like"/>
 
-    <com.gemvietnam.view.CTextView
+    <com.gemvietnam.widget.CTextView
         android:id="@+id/post_comment_count_tv"
         style="@style/Text.ActivityCount"
         android:text="3"
         android:layout_marginLeft="@dimen/padding_view_common"
         android:drawableLeft="@drawable/ic_comments"/>
 
-    <com.gemvietnam.view.CTextView
+    <com.gemvietnam.widget.CTextView
         android:id="@+id/post_share_count_tv"
         style="@style/Text.ActivityCount"
         android:text="3"
         android:layout_marginLeft="@dimen/padding_view_common"
         android:drawableLeft="@drawable/ic_share"/>
 
-    <com.gemvietnam.view.CTextView
+    <com.gemvietnam.widget.CTextView
         android:id="@+id/post_activity_summary_tv"
         style="@style/Text.ActivitySummary"
         android:layout_width="0dp"
