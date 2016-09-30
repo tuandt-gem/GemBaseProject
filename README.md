@@ -18,7 +18,7 @@ allprojects {
 
 2. Add dependency to your module build.gradle
 ```
-compile 'com.github.tuandt-gem:GemBaseProject:1.0.1'
+compile 'com.github.tuandt-gem:GemBaseProject:1.0.2'
 ```
 3. Sync project & <b>ENJOY</b>
 
