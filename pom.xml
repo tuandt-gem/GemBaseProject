@@ -1,0 +1,5 @@
+<repository>
+    <id>git-tuandt-gem</id>
+    <name>tuandt-gem's Git based repo</name>
+    <url>https://github.com/tuandt-gem/GemBaseProject/raw/master/</url>
+</repository>
