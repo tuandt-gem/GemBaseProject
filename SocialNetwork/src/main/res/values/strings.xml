@@ -17,7 +17,7 @@
     </string>
     <string name="msg_server_error">Kết nối máy chủ thất bại. Vui lòng thử lại sau.</string>
 
-    <!-- FeedDTO -->
+    <!-- Feed -->
     <string name="more_image_format">+%s</string>
     <string name="no_data">Không có dữ liệu</string>
     <string name="activity_summary_format">%d hoạt động</string>
@@ -26,4 +26,11 @@
     <string name="default_date_time_format">Ngày %1$d tháng %2$d năm %3$d %4$d:%5$d</string>
     <string name="date_format_without_time">Ngày %1$d tháng %2$d năm %3$d</string>
     <string name="see_more">Xem thêm</string>
+    <string name="add_post_hint">Bạn đang nghĩ gì</string>
+    <string name="title_likes">Likes</string>
+    <string name="title_comments">Comments</string>
+    <string name="title_shares">Shares</string>
+    <string name="format_count_comments">%s comments</string>
+    <string name="format_count_likes">%s likes</string>
+    <string name="format_count_shares">%s shares</string>
 </resources>

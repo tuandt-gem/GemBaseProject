@@ -1,18 +1,18 @@
-package com.gemvietnam.hocvalam.socialNetwork.network.dto;
+package com.gemvietnam.hocvalam.socialNetwork.data.remote.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * AccountDTO
+ * Account
  * Created by neo on 7/19/2016.
  */
-public class AccountDTO {
+public class Account {
     @SerializedName("name")
     private String mName;
 
-    public AccountDTO(){};
+    public Account(){};
 
-    public AccountDTO(String name) {
+    public Account(String name) {
         mName = name;
     }
 
@@ -20,7 +20,7 @@ public class AccountDTO {
         return mName;
     }
 
-    public AccountDTO setName(String name) {
+    public Account setName(String name) {
         mName = name;
         return this;
     }

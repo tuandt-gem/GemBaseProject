@@ -8,10 +8,10 @@ import java.util.List;
  */
 
 public class CollectionUtils {
-    /**
-     * Check if list is null or empty
-     */
-    public static boolean isEmpty(List list) {
-        return list == null || list.size() == 0;
-    }
+  /**
+   * Check if list is null or empty
+   */
+  public static boolean isEmpty(List list) {
+    return list == null || list.size() == 0;
+  }
 }

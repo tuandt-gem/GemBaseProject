@@ -1,4 +1,4 @@
-package com.gemvietnam.hocvalam.socialNetwork.network;
+package com.gemvietnam.hocvalam.socialNetwork.data.remote;
 
 
 import java.io.IOException;

@@ -2,39 +2,25 @@ package com.gemvietnam.hocvalam.socialNetwork.screen.detail;
 
 import com.gemvietnam.base.viper.interfaces.IInteractor;
 import com.gemvietnam.base.viper.interfaces.IPresenter;
-import com.gemvietnam.base.viper.interfaces.IRouter;
-import com.gemvietnam.base.viper.interfaces.IViewModel;
 import com.gemvietnam.base.viper.interfaces.PresentView;
-import com.gemvietnam.hocvalam.socialNetwork.model.Feed;
+import com.gemvietnam.hocvalam.socialNetwork.data.remote.dto.Feed;
 
 /**
  * The Detail Contract
  */
 interface DetailContract {
 
-    interface Interactor extends IInteractor<Presenter> {
-    }
+  interface Interactor extends IInteractor<Presenter> {
+  }
 
-    interface View extends PresentView<Presenter> {
-        void viewFeedDetail(DetailContract.ViewModel detailViewModel);
-    }
+  interface View extends PresentView<Presenter> {
+    void viewFeedDetail(Feed feed);
+  }
 
-    interface Presenter extends IPresenter<Router, ViewModel, View, Interactor> {
-        void setFeed(Feed feed);
-    }
+  interface Presenter extends IPresenter<View, Interactor> {
+    DetailPresenter setFeed(Feed feed);
+  }
 
-    interface Router extends IRouter {
-    }
-
-    interface ViewModel extends IViewModel<View> {
-        void setFeed(Feed feed);
-
-        String getContent();
-
-        String getAvatarUrl();
-
-        String getTitle();
-    }
 }
 
 

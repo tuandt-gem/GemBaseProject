@@ -72,4 +72,15 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="AvatarSmall">
+        <item name="android:layout_width">@dimen/avatar_size_small</item>
+        <item name="android:layout_height">@dimen/avatar_size_small</item>
+        <item name="android:background">@color/grey</item>
+    </style>
+
+    <style name="ImageBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/padding_view_common</item>
+    </style>
 </resources>

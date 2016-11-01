@@ -11,18 +11,18 @@ import android.util.TypedValue;
  */
 public class DimensionUtils {
 
-    /**
-     * Convert dp to px
-     */
-    public static float dpToPx(Context context, float valueInDp) {
-        if (context == null || context.getResources() == null) {
-            return 0;
-        }
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, metrics);
+  /**
+   * Convert dp to px
+   */
+  public static float dpToPx(Context context, float valueInDp) {
+    if (context == null || context.getResources() == null) {
+      return 0;
     }
+    DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, metrics);
+  }
 
-    public static int getInPx(Context context, @DimenRes int dimenId) {
-        return context.getResources().getDimensionPixelSize(dimenId);
-    }
+  public static int getInPx(Context context, @DimenRes int dimenId) {
+    return context.getResources().getDimensionPixelSize(dimenId);
+  }
 }

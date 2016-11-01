@@ -1,44 +1,57 @@
 package com.gemvietnam.base.viper;
 
+import com.gemvietnam.base.viper.interfaces.ContainerView;
 import com.gemvietnam.base.viper.interfaces.IInteractor;
 import com.gemvietnam.base.viper.interfaces.IPresenter;
-import com.gemvietnam.base.viper.interfaces.IRouter;
 import com.gemvietnam.base.viper.interfaces.IView;
-import com.gemvietnam.base.viper.interfaces.IViewModel;
 
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 
 /**
  * Base implements for presenters
  * Created by neo on 14/03/2016.
  */
-public abstract class Presenter<R extends IRouter, VM extends IViewModel, V extends IView,
-        I extends IInteractor> implements IPresenter<R, VM, V, I> {
-    protected V mView;
-    protected R mRouter;
-    protected I mInteractor;
-    protected VM mViewModel;
+public abstract class Presenter<V extends IView, I extends IInteractor>
+    implements IPresenter<V, I> {
+  protected ContainerView mContainerView;
+  protected V mView;
+  protected I mInteractor;
 
-    @SuppressWarnings("unchecked")
-    public Presenter(R router) {
-        mRouter = router;
-        mInteractor = onCreateInteractor();
-        mView = onCreateView();
-        mViewModel = onCreateViewModel(mView);
+  @SuppressWarnings("unchecked")
+  public Presenter(ContainerView containerView) {
+    mContainerView = containerView;
+    mInteractor = onCreateInteractor();
+    mView = onCreateView();
 
-        mView.setPresenter(this);
+    mView.setPresenter(this);
+  }
 
-        mViewModel.setView(mView);
-    }
+  protected Activity getViewContext() {
+    return mView.getViewContext();
+  }
 
+  @Override
+  public V getView() {
+    return mView;
+  }
 
-    @Override
-    public Activity getViewContext() {
-        return mView.getViewContext();
-    }
+  @Override
+  public Fragment getFragment() {
+    return getView() instanceof Fragment ? (Fragment) getView() : null;
+  }
 
-    @Override
-    public V getView() {
-        return mView;
-    }
+  @Override
+  public void presentView() {
+    mContainerView.presentView(mView);
+  }
+
+  @Override
+  public void pushView() {
+    mContainerView.pushView(mView);
+  }
+
+  public void addView() {
+    mContainerView.addView(mView);
+  }
 }

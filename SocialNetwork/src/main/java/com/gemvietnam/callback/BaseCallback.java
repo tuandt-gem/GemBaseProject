@@ -3,7 +3,7 @@ package com.gemvietnam.callback;
 
 import com.gemvietnam.hocvalam.socialNetwork.R;
 import com.gemvietnam.hocvalam.socialNetwork.SocialNetworkApp;
-import com.gemvietnam.hocvalam.socialNetwork.network.dto.ResponseDTO;
+import com.gemvietnam.hocvalam.socialNetwork.data.remote.dto.ResponseDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;

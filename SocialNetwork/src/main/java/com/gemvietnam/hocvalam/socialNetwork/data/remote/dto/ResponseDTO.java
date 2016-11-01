@@ -1,4 +1,4 @@
-package com.gemvietnam.hocvalam.socialNetwork.network.dto;
+package com.gemvietnam.hocvalam.socialNetwork.data.remote.dto;
 
 import com.google.gson.annotations.SerializedName;
 

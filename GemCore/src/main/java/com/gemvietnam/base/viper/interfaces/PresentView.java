@@ -5,16 +5,16 @@ package com.gemvietnam.base.viper.interfaces;
  * Created by neo on 9/15/2016.
  */
 public interface PresentView<P extends IPresenter> extends IView<P> {
-    void showProgress();
+  void showProgress();
 
-    void hideProgress();
+  void hideProgress();
 
-    void showAlertDialog(String message);
+  void showAlertDialog(String message);
 
-    void onRequestError(String errorCode, String errorMessage);
+  void onRequestError(String errorCode, String errorMessage);
 
-    void onNetworkError(boolean shouldShowPopup);
+  void onNetworkError(boolean shouldShowPopup);
 
-    void onRequestSuccess();
+  void onRequestSuccess();
 
 }

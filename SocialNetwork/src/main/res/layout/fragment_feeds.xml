@@ -9,24 +9,50 @@
 
     <include layout="@layout/ab_home"/>
 
+    <LinearLayout
+        android:id="@+id/top_new_post_ll"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        android:padding="@dimen/padding_view_common"
+        android:layout_marginBottom="@dimen/padding_view_common">
+
+        <ImageView style="@style/AvatarSmall"/>
+
+        <TextView
+            android:id="@+id/new_post_et"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/padding_view_common"
+            android:text="@string/add_post_hint"
+            android:textColor="@color/edit_text_hint"
+            android:gravity="center_vertical"
+            android:layout_weight="1"/>
+
+        <ImageView
+            style="@style/ImageBar"
+            android:src="@drawable/ic_camera_post"/>
+    </LinearLayout>
     <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/feed_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_moreProgress="@layout/load_more_view"
-                app:layout_progress="@layout/layout_loading_progress"
-                app:recyclerClipToPadding="false"
-                app:layout_empty="@layout/layout_empty_list"
-                app:recyclerPadding="0dp"/>
-        <!--</LinearLayout>-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/feed_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_moreProgress="@layout/load_more_view"
+        app:layout_progress="@layout/layout_loading_progress"
+        app:recyclerClipToPadding="false"
+        app:layout_empty="@layout/layout_empty_list"
+        app:recyclerPadding="0dp"/>
+    <!--</LinearLayout>-->
     <!--</ScrollView>-->
 
 </LinearLayout>

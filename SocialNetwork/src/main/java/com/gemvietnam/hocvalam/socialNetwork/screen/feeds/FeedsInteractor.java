@@ -1,9 +1,7 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.feeds;
 
 import com.gemvietnam.base.viper.Interactor;
-import com.gemvietnam.hocvalam.socialNetwork.model.Feed;
-import com.gemvietnam.base.mapper.ModelMapper;
-import com.gemvietnam.hocvalam.socialNetwork.network.dto.FeedDTO;
+import com.gemvietnam.hocvalam.socialNetwork.data.remote.dto.Feed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +19,13 @@ class FeedsInteractor extends Interactor<FeedsContract.Presenter> implements Fee
 
     @Override
     public void getFeeds() {
-        List<FeedDTO> feedDTOs = new ArrayList<>();
+        List<Feed> feeds = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            feedDTOs.add(FeedDTO.getInstance());
+            feeds.add(Feed.getInstance());
         }
 
         // Map DTO to Model
-        List<Feed> feeds = ModelMapper.mapList(feedDTOs, Feed.class);
+//        List<Feed> feeds = ModelMapper.mapList(feeds, Feed.class);
 
         mPresenter.onFeedsLoaded(feeds);
     }

@@ -1,20 +1,25 @@
 package com.gemvietnam.base.viper.interfaces;
 
-import com.gemvietnam.base.viper.ViewFragment;
-
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 
 /**
  * Base Presenter
  * Created by neo on 2/5/2016.
  */
-public interface IPresenter<R extends IRouter, VM extends IViewModel, V extends IView, I extends
-        IInteractor> {
-    Activity getViewContext();
-    void start();
+public interface IPresenter<V extends IView, I extends IInteractor> {
 
-    V getView();
-    I onCreateInteractor();
-    VM onCreateViewModel(V view);
-    V onCreateView();
+  void start();
+
+  V getView();
+
+  I onCreateInteractor();
+
+  V onCreateView();
+
+  Fragment getFragment();
+
+  void presentView();
+
+  void pushView();
 }

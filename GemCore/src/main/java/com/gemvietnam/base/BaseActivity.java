@@ -22,95 +22,95 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        overridePendingTransition(CoreDefault.ANIM_IN, CoreDefault.ANIM_OUT);
-        setContentView(getLayoutId());
-        // Inject views
-        ButterKnife.bind(this);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    overridePendingTransition(CoreDefault.ANIM_IN, CoreDefault.ANIM_OUT);
+    setContentView(getLayoutId());
+    // Inject views
+    ButterKnife.bind(this);
 
-        // Prepare layout
-        initLayout();
+    // Prepare layout
+    initLayout();
 
+  }
+
+  public void initLayout() {
+  }
+
+  public void showAlertDialog(String message) {
+    DialogUtils.showErrorAlert(this, message);
+  }
+
+  public void showProgress() {
+    DialogUtils.showProgressDialog(this);
+  }
+
+  public void hideProgress() {
+    DialogUtils.dismissProgressDialog();
+  }
+
+  public void onRequestError(String errorCode, String errorMessage) {
+    DialogUtils.showErrorAlert(this, errorMessage);
+    hideProgress();
+  }
+
+  public void onRequestSuccess() {
+    hideProgress();
+  }
+
+  /**
+   * Return layout resource id for activity
+   */
+  protected abstract int getLayoutId();
+
+  /**
+   * Hide keyboard of current focus view
+   */
+  public void hideKeyboard() {
+    View view = this.getCurrentFocus();
+    if (view != null) {
+      InputMethodManager imm =
+          (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+      getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
+  }
 
-    public void initLayout() {
-    }
+  /**
+   * Show keyboard for {@link EditText}
+   */
+  public void showKeyboard(EditText editText) {
+    editText.requestFocus();
+    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+  }
 
-    public void showAlertDialog(String message) {
-        DialogUtils.showErrorAlert(this, message);
-    }
+  public void addFragment(int containerId, BaseFragment fragment, boolean addToBackStack,
+                          String tag) {
+    ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, containerId,
+        addToBackStack, tag);
+  }
 
-    public void showProgress() {
-        DialogUtils.showProgressDialog(this);
-    }
+  public void addFragment(int containerId, BaseFragment fragment, boolean addToBackStack) {
+    addFragment(containerId, fragment, addToBackStack, fragment.getClass().getSimpleName());
+  }
 
-    public void hideProgress() {
-        DialogUtils.dismissProgressDialog();
-    }
+  public void addFragment(int containerId, BaseFragment fragment) {
+    addFragment(containerId, fragment, false, null);
+  }
 
-    public void onRequestError(String errorCode, String errorMessage) {
-        DialogUtils.showErrorAlert(this, errorMessage);
-        hideProgress();
-    }
-
-    public void onRequestSuccess() {
-        hideProgress();
-    }
-
-    /**
-     * Return layout resource id for activity
-     */
-    protected abstract int getLayoutId();
-
-    /**
-     * Hide keyboard of current focus view
-     */
-    public void hideKeyboard() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm =
-                    (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    FragmentManager manager = getSupportFragmentManager();
+    if (manager != null) {
+      for (Fragment fragment : manager.getFragments()) {
+        if (fragment != null) {
+          fragment.onActivityResult(requestCode, resultCode, data);
         }
+      }
     }
-
-    /**
-     * Show keyboard for {@link EditText}
-     */
-    public void showKeyboard(EditText editText) {
-        editText.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-    }
-
-    public void addFragment(int containerId, BaseFragment fragment, boolean addToBackStack,
-                            String tag) {
-        ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, containerId,
-                addToBackStack, tag);
-    }
-
-    public void addFragment(int containerId, BaseFragment fragment, boolean addToBackStack) {
-        addFragment(containerId, fragment, addToBackStack, fragment.getClass().getSimpleName());
-    }
-
-    public void addFragment(int containerId, BaseFragment fragment) {
-        addFragment(containerId, fragment, false, null);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        FragmentManager manager = getSupportFragmentManager();
-        if (manager != null) {
-            for (Fragment fragment : manager.getFragments()) {
-                if (fragment != null) {
-                    fragment.onActivityResult(requestCode, resultCode, data);
-                }
-            }
-        }
-    }
+  }
 }

@@ -11,7 +11,7 @@
 
     <color name="bg_grey">#eaeaea</color>
 
-    <!-- FeedDTO -->
+    <!-- Feed -->
     <color name="text_name">#0953a4</color>
     <color name="text_date">#a1a1a1</color>
     <color name="text_content">#3f3f3f</color>
@@ -19,4 +19,5 @@
     <color name="text_activity_count">#727272</color>
     <color name="text_activity_summary">#0953a4</color>
     <color name="bg_activity_summary">#F4F8FA</color>
+    <color name="edit_text_hint">#858585</color>
 </resources>

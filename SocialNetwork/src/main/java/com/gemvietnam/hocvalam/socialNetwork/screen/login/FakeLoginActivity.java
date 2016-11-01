@@ -1,10 +1,8 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.login;
 
 import com.gemvietnam.base.BaseActivity;
-import com.gemvietnam.base.mapper.ModelMapper;
 import com.gemvietnam.hocvalam.socialNetwork.R;
-import com.gemvietnam.hocvalam.socialNetwork.model.Account;
-import com.gemvietnam.hocvalam.socialNetwork.network.dto.AccountDTO;
+import com.gemvietnam.hocvalam.socialNetwork.data.remote.dto.Account;
 import com.gemvietnam.hocvalam.socialNetwork.screen.home.HomeActivity;
 import com.gemvietnam.utils.ActivityUtils;
 import com.gemvietnam.utils.RecyclerUtils;
@@ -45,11 +43,11 @@ public class FakeLoginActivity extends BaseActivity implements AccountAdapter.It
     }
 
     public void getAccounts() {
-        List<AccountDTO> accountDTOs = new ArrayList<>();
+        List<Account> accounts = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            accountDTOs.add(new AccountDTO("Account " + i));
+            accounts.add(new Account("Account " + i));
         }
-        List<Account> accounts = ModelMapper.mapList(accountDTOs, Account.class);
+//        List<Account> accounts = ModelMapper.mapList(accounts, Account.class);
 
         mAccountAdapter.setItems(accounts);
         mAccountAdapter.notifyDataSetChanged();
@@ -69,7 +67,7 @@ public class FakeLoginActivity extends BaseActivity implements AccountAdapter.It
 
     @Override
     public void onItemClicked(Account account) {
-        Account.setInstance(account);
+//        Account.setInstance(account);
         ActivityUtils.startActivity(this, HomeActivity.class);
     }
 

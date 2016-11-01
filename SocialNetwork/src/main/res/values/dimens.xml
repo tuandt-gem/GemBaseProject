@@ -7,4 +7,5 @@
     <dimen name="padding_small">3dp</dimen>
     <dimen name="padding_view_common">10dp</dimen>
     <dimen name="feed_avatar_size">40dp</dimen>
+    <dimen name="avatar_size_small">30dp</dimen>
 </resources>

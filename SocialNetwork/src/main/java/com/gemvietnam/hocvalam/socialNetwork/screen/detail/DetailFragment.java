@@ -2,6 +2,7 @@ package com.gemvietnam.hocvalam.socialNetwork.screen.detail;
 
 import com.gemvietnam.base.viper.ViewFragment;
 import com.gemvietnam.hocvalam.socialNetwork.R;
+import com.gemvietnam.hocvalam.socialNetwork.data.remote.dto.Feed;
 import com.gemvietnam.utils.image.ImageUtils;
 
 import android.widget.ImageView;
@@ -13,7 +14,6 @@ import butterknife.Bind;
  * The Detail Fragment
  */
 public class DetailFragment extends ViewFragment<DetailContract.Presenter> implements DetailContract.View {
-
     @Bind(R.id.avatar_iv)
     ImageView mAvatar;
     @Bind(R.id.title_tv)
@@ -31,9 +31,9 @@ public class DetailFragment extends ViewFragment<DetailContract.Presenter> imple
     }
 
     @Override
-    public void viewFeedDetail(DetailContract.ViewModel detailViewModel) {
-        mTitleTv.setText(detailViewModel.getTitle());
-        mContentTv.setText(detailViewModel.getContent());
-        ImageUtils.loadImage(getActivity(), detailViewModel.getAvatarUrl(), mAvatar);
+    public void viewFeedDetail(Feed feed) {
+        mTitleTv.setText(feed.getName());
+        mContentTv.setText(feed.getContent());
+        ImageUtils.loadImage(getActivity(), feed.getAvatar(), mAvatar);
     }
 }

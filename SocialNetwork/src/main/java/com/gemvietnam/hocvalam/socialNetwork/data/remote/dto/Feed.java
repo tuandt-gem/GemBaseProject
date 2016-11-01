@@ -1,10 +1,10 @@
-package com.gemvietnam.hocvalam.socialNetwork.model;
+package com.gemvietnam.hocvalam.socialNetwork.data.remote.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FeedDTO
+ * Feed
  * Created by neo on 7/19/2016.
  */
 public class Feed {
@@ -80,11 +80,11 @@ public class Feed {
     private static int sCount = 0;
     public static Feed getInstance() {
         sCount++;
-        Feed feedDTO = new Feed();
-        feedDTO.setName("Lên là lên là lên ú ù");
-        feedDTO.setAvatar("http://4.bp.blogspot.com/-TrkY3RlqQJY/T3caSIG28SI/AAAAAAAAcBA/DWkJZ78Mc2w/s400/avatar%2Bshock%2B%252844%2529.jpg");
-        feedDTO.setDate(System.currentTimeMillis());
-        feedDTO.setContent("The people that call themselves \"responsible adults\" are not the people that I want to look up to. Neither are (most of) those fools from occupy wall street or something else");
+        Feed feed = new Feed();
+        feed.setName("Lên là lên là lên ú ù");
+        feed.setAvatar("http://4.bp.blogspot.com/-TrkY3RlqQJY/T3caSIG28SI/AAAAAAAAcBA/DWkJZ78Mc2w/s400/avatar%2Bshock%2B%252844%2529.jpg");
+        feed.setDate(System.currentTimeMillis());
+        feed.setContent("The people that call themselves \"responsible adults\" are not the people that I want to look up to. Neither are (most of) those fools from occupy wall street or something else");
         List<String> images = new ArrayList<>();
 
         long diff = sCount % 4;
@@ -104,13 +104,13 @@ public class Feed {
             }
         }
 
-        feedDTO.setImages(images);
+        feed.setImages(images);
 
-        feedDTO.setLikeCount(3);
-        feedDTO.setCommentCount(3);
-        feedDTO.setShareCount(3);
+        feed.setLikeCount(3);
+        feed.setCommentCount(6);
+        feed.setShareCount(9);
 
-        return feedDTO;
+        return feed;
     }
 
     public String getAvatar() {

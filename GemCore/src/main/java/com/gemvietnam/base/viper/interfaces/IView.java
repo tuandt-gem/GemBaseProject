@@ -10,9 +10,11 @@ import android.app.Activity;
  * Created by neo on 2/5/2016.
  */
 public interface IView<P extends IPresenter> {
-    void initLayout();
-    BaseActivity getBaseActivity();
-    Activity getViewContext();
+  void initLayout();
 
-    void setPresenter(P presenter);
+  BaseActivity getBaseActivity();
+
+  Activity getViewContext();
+
+  void setPresenter(P presenter);
 }

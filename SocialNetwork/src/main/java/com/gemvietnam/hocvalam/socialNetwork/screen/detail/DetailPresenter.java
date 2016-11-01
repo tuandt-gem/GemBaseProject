@@ -1,40 +1,39 @@
 package com.gemvietnam.hocvalam.socialNetwork.screen.detail;
 
 import com.gemvietnam.base.viper.Presenter;
-import com.gemvietnam.hocvalam.socialNetwork.model.Feed;
+import com.gemvietnam.base.viper.interfaces.ContainerView;
+import com.gemvietnam.hocvalam.socialNetwork.data.remote.dto.Feed;
 
 /**
  * The Detail Presenter
  */
-class DetailPresenter extends Presenter<DetailContract.Router, DetailContract.ViewModel,
-        DetailContract.View, DetailContract.Interactor> implements DetailContract.Presenter {
+public class DetailPresenter extends Presenter<DetailContract.View, DetailContract.Interactor>
+    implements DetailContract.Presenter {
 
-    DetailPresenter(DetailContract.Router router) {
-        super(router);
-    }
+  private Feed mFeed;
 
-    @Override
-    public DetailContract.ViewModel onCreateViewModel(DetailContract.View view) {
-        return new DetailViewModel(view);
-    }
+  public DetailPresenter(ContainerView containerView) {
+    super(containerView);
+  }
 
-    @Override
-    public DetailContract.View onCreateView() {
-        return DetailFragment.getInstance();
-    }
+  @Override
+  public DetailContract.View onCreateView() {
+    return DetailFragment.getInstance();
+  }
 
-    @Override
-    public void start() {
-        mView.viewFeedDetail(mViewModel);
-    }
+  @Override
+  public void start() {
+    mView.viewFeedDetail(mFeed);
+  }
 
-    @Override
-    public DetailContract.Interactor onCreateInteractor() {
-        return new DetailInteractor(this);
-    }
+  @Override
+  public DetailContract.Interactor onCreateInteractor() {
+    return new DetailInteractor(this);
+  }
 
-    @Override
-    public void setFeed(Feed feed) {
-        mViewModel.setFeed(feed);
-    }
+  @Override
+  public DetailPresenter setFeed(Feed feed) {
+    mFeed = feed;
+    return this;
+  }
 }
